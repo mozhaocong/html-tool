@@ -1,15 +1,15 @@
 import path from 'path'
-import { babel } from '@rollup/plugin-babel';
-import commonjs from '@rollup/plugin-commonjs';
+import { babel } from '@rollup/plugin-babel'
+import commonjs from '@rollup/plugin-commonjs'
 import typescript from 'rollup-plugin-typescript2'
-import { nodeResolve } from '@rollup/plugin-node-resolve';
-import dts from "rollup-plugin-dts";
-import { terser } from "rollup-plugin-terser";
-const resolveFile = (name) => path.resolve(__dirname, name)
+import { nodeResolve } from '@rollup/plugin-node-resolve'
+import dts from 'rollup-plugin-dts'
+import { terser } from 'rollup-plugin-terser'
+const resolveFile = name => path.resolve(__dirname, name)
 const extensions = ['.js', '.ts', '.tsx']
-module.exports =[
+module.exports = [
 	{
-		input: "./src/index.ts",
+		input: './src/index.ts',
 		plugins: [
 			typescript({
 				check: false,
@@ -21,7 +21,7 @@ module.exports =[
 			babel({
 				babelHelpers: 'runtime',
 				exclude: 'node_modules/**',
-				plugins: ['@babel/plugin-transform-runtime'],
+				plugins: ['@babel/plugin-transform-runtime']
 			}),
 			terser()
 		],
@@ -29,16 +29,16 @@ module.exports =[
 			{
 				file: 'lib/index.js', // 通用模块
 				format: 'umd',
-				name: 'htmlTool',
+				name: 'htmlTool'
 			},
 			{
 				file: 'es/index.js', // es6模块
-				format: 'es',
-			},
+				format: 'es'
+			}
 		],
 		globals: {
-			ramda: 'ramda',
+			ramda: 'ramda'
 		},
-		external: ['ramda'],
-	},
-];
+		external: ['ramda']
+	}
+]
