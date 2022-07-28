@@ -41,5 +41,3 @@ export const serialNumber = ({ index }: { index: number }, data: { pageSize: { v
 	}
 	return index + 1 + currentPageSize
 }
-
-export default serialNumber

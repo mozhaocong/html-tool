@@ -25,4 +25,19 @@ export function isFunction(fn: any): fn is Function {
 	return is(Function, fn)
 }
 
-export default isFunction
+export function isBlob(fn: any): fn is Blob {
+	return is(Blob, fn)
+}
+
+// 判断类型是不是函数
+export function isFunctionOfOther(value: any, callValue: ObjectMap = {}) {
+	if (isTrue(value)) {
+		if (isFunction(value)) {
+			return value(callValue) as any
+		} else {
+			return value
+		}
+	} else {
+		return ''
+	}
+}

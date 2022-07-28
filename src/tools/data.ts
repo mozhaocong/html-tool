@@ -1,4 +1,4 @@
-import { includes, isNil } from 'ramda'
+import { isNil } from 'ramda'
 import { isTrue } from './typeJudgment'
 type ObjectMap<Key extends string | number | symbol = any, Value = any> = {
 	[key in Key]: Value
@@ -48,11 +48,11 @@ export function setArrayData(item: any[], call: (callItem: ObjectMap) => ObjectM
 }
 
 // 设置递归数组
-export function forArrayData(item: any[], call: (callItem: ObjectMap) => void): void {
+export function forArrayData(item: any[], call: (callItem: ObjectMap, index: number) => void, index = 0): void {
 	item.forEach(res => {
-		call(res)
+		call(res, index)
 		if (isTrue(res.children)) {
-			forArrayData(res.children, call)
+			forArrayData(res.children, call, index + 1)
 		}
 	})
 }
@@ -126,4 +126,12 @@ export function ArrayObjectIncludes(data: ObjectMap[], key: string, item: string
 	return data.map(item => item[key]).includes(item)
 }
 
-export default ArrayObjectIncludes
+export function objectFilterEmpty(item: ObjectMap = {}) {
+	const data: ObjectMap = {}
+	for (const key in item) {
+		if (isTrue(item[key])) {
+			data[key] = item[key]
+		}
+	}
+	return data
+}
