@@ -41,3 +41,7 @@ export function isFunctionOfOther(value: any, callValue: ObjectMap = {}) {
 		return ''
 	}
 }
+
+export function isBoolean(fn: any): fn is boolean {
+	return is(Boolean, fn)
+}

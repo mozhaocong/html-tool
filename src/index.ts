@@ -1,4 +1,4 @@
-export { isTrue, isString, isArray, isObject, isNumber, isFunction, isBlob, isFunctionOfOther } from './tools/typeJudgment'
+export { isTrue, isString, isArray, isObject, isNumber, isFunction, isBlob, isFunctionOfOther, isBoolean } from './tools/typeJudgment'
 export { serialNumber, debounce, throttle } from './tools/common'
 export {
 	setArrayData,
@@ -15,7 +15,8 @@ export {
 	dayJsDataToString,
 	arrayObjectJudgeNullObject,
 	objectFilterEmpty,
-	ObjectFilterNull
+	ObjectFilterNull,
+	arrayGetData
 } from './tools/data'
 
 export { default as EventBus } from './tools/eventBus'
