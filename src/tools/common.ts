@@ -31,7 +31,7 @@ export function debounce<T extends (...arg: any[]) => any>(fn: T, wait = 500) {
 }
 
 //table 序号
-export const serialNumber = ({ index }: { index: number }, data: { pageSize: { value: number }; current: { value: number } }) => {
+export function serialNumber({ index }: { index: number }, data: { pageSize: { value: number }; current: { value: number } }): number {
 	let currentPageSize = 0
 	if (isTrue(data)) {
 		currentPageSize = ((data?.current?.value || 0) - 1) * (data?.pageSize?.value || 0)

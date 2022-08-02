@@ -1,9 +1,3 @@
-/*
- * @Description:
- * @Author: wanghengzhen
- * @Date: 2022-02-11 15:43:38
- * @LastEditTime: 2022-02-11 16:23:22
- */
 module.exports = {
 	root: true,
 	env: {
