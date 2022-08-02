@@ -1,6 +1,6 @@
 {
   "name": "@ht/html-tool",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,6 +16,7 @@
   "module": "es/index.js",
   "dependencies": {
     "axios": "^0.27.2",
+    "dayjs": "^1.11.4",
     "ramda": "^0.28.0"
   },
   "devDependencies": {

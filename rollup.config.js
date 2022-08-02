@@ -40,8 +40,9 @@ module.exports = [
 		],
 		globals: {
 			ramda: 'ramda',
+			dayjs: 'dayjs',
 			axios: 'axios'
 		},
-		external: ['ramda', 'axios']
+		external: ['ramda', 'axios', 'dayjs']
 	}
 ]
