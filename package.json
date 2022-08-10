@@ -1,6 +1,6 @@
 {
   "name": "@ht/html-tool",
-  "version": "1.0.3",
+  "version": "1.0.41",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,6 +14,7 @@
   "license": "ISC",
   "unpkg": "lib/index.js",
   "module": "es/index.js",
+  "typings": "lib/index.d.ts",
   "files": [
     "lib",
     "es"

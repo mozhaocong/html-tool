@@ -20,5 +20,5 @@ export {
 } from './tools/data'
 
 export { default as EventBus } from './tools/eventBus'
-export { axiosInit, get, post, methodType } from './http'
+export { axiosInit, axiosGet, axiosPost, methodType } from './http'
 export { getSearchString } from './tools/utl'
