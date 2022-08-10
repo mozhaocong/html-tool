@@ -1,6 +1,6 @@
 {
   "name": "@ht/html-tool",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,6 +14,10 @@
   "license": "ISC",
   "unpkg": "lib/index.js",
   "module": "es/index.js",
+  "files": [
+    "lib",
+    "es"
+  ],
   "dependencies": {
     "axios": "^0.27.2",
     "dayjs": "^1.11.4",
