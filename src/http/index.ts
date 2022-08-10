@@ -85,7 +85,7 @@ export function axiosInit({ setConfigHeaders, responseSuccess, responseError, re
  * @param {Object} data
  * @returns Promise
  */
-export function axiosPost(url: string, data: any, options = {}): Promise<any> {
+export function axiosPost(url: string, data = {}, options = {}): Promise<any> {
 	return new Promise((resolve, reject) => {
 		axios({
 			method: 'post',
@@ -102,7 +102,7 @@ export function axiosPost(url: string, data: any, options = {}): Promise<any> {
 	})
 }
 
-export function axiosGet(url: string, data: any, options = {}): Promise<any> {
+export function axiosGet(url: string, data = {}, options = {}): Promise<any> {
 	return new Promise((resolve, reject) => {
 		axios({
 			method: 'get',
