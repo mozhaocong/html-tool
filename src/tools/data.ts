@@ -1,4 +1,4 @@
-import { isNil } from 'ramda'
+import { has, isNil } from 'ramda'
 import { isNumber, isObject, isTrue } from './typeJudgment'
 import dayjs from 'dayjs'
 type ObjectMap<Key extends string | number | symbol = any, Value = any> = {
@@ -196,4 +196,12 @@ export function arrayGetData(sourceData: any[] = [], getData = {}): any[] {
 		}
 		return returnData
 	})
+}
+
+export function objectRepeatObject(itemA: ObjectMap, itemB: ObjectMap, callback: (key: string, a: any, b: any) => void): void {
+	for (const itemAKey in itemA) {
+		if (has(itemAKey, itemB)) {
+			callback(itemAKey, itemA[itemAKey], itemB[itemAKey])
+		}
+	}
 }
