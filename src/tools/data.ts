@@ -205,3 +205,106 @@ export function objectRepeatObject(itemA: ObjectMap, itemB: ObjectMap, callback:
 		}
 	}
 }
+
+//objectRecursiveMerge-start
+// const data: any = { a: { b: 1, c: 2 } }
+// // const itemA = ['a', 'b']
+// // const itemData = { a: { b: { c: { f: 1 } }, d: 2 }, e: {} }
+// // const data: any = { a: { b: 1, c: 2 } }
+// // const itemA = ['a', 'b']
+// const itemData = { a: { b: 2, d: 2 } }
+// // const itemData = { a: { b: { c: 2 }, d: 2 } }
+// // const itemData = { a: { b: {} } }
+// const mergeData = objectRecursiveMerge(data, itemData)
+// console.log('objectRecursiveMerge', mergeData, data)
+//objectRecursiveMerge-end
+
+export function objectRecursiveMerge(dataSource: ObjectMap = {}, mergeData: ObjectMap = {}) {
+	const data = deepClone(dataSource)
+	function mergeDataFor(item: any = {}) {
+		const { target, mergeData, pTarget = {}, pMergeData = {}, key = '' } = item
+		if (!isTrue(target)) {
+			pTarget[key] = pMergeData[key]
+			return
+		}
+		if (isObject(target) && isTrue(target) && isObject(mergeData) && isTrue(mergeData)) {
+			for (const itemKey in mergeData) {
+				mergeDataFor({
+					target: target[itemKey],
+					mergeData: mergeData[itemKey],
+					pTarget: target,
+					pMergeData: mergeData,
+					key: itemKey
+				})
+			}
+		} else {
+			pTarget[key] = mergeData
+			return
+		}
+	}
+	mergeDataFor({ target: data, mergeData })
+	return data
+}
+
+//arrayToObject-start
+// const testArray = ['a', 'b', 'c']
+// const testObject = { a: { b: { c: 2, d: 2 } } }
+// // const testObject = { a: { b: 1 } }
+// const arrayData = arrayToObject(testObject, testArray, item => {
+// 	console.log('item', item)
+// 	return 1
+// })
+// console.log('arrayToObject', testObject, arrayData)
+//arrayToObject-ned
+
+export function arrayToObject(dataSource: ObjectMap = {}, arrayData: Array<string | number> = [], setData?: (returnData: any) => any) {
+	const data = deepClone(dataSource)
+	let replaceData = data
+	let itemData: ObjectMap = {}
+	let key: any = ''
+	try {
+		for (const item of arrayData) {
+			itemData = replaceData
+			if (!isTrue(replaceData[item])) {
+				replaceData[item] = {}
+			}
+			replaceData = replaceData[item]
+			key = item
+		}
+	} catch (e) {
+		console.error(e, '数组转对象，数据源与数组类型不匹配', 'dataSource', dataSource, 'arrayData', arrayData)
+		return {}
+	}
+
+	if (!setData) {
+		return deepClone(dataSource)
+	}
+	const returnData = setData(deepClone(itemData[key]))
+	if (isTrue(returnData)) {
+		itemData[key] = returnData
+		return data
+	} else {
+		return deepClone(dataSource)
+	}
+}
+
+//getArrayToObjectTargetValue-start
+
+// const testArray = ['a', 'b', 'c']
+// const testObject = { a: { b: { c: 2, d: 2 } } }
+// console.log(
+// 	'getArrayToObjectTargetValue',
+// 	getArrayToObjectTargetValue(testObject, testArray)
+// )
+// 就是通过数组查找除对象的值 上面就是返回  testObject 的 c的值
+
+//getArrayToObjectTargetValue-end
+
+export function getArrayToObjectTargetValue(dataSource: ObjectMap = {}, arrayData: Array<string | number> = []) {
+	let data = ''
+	arrayToObject(dataSource, arrayData, value => {
+		data = value
+		return 1
+	})
+	return data
+}

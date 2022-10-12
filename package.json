@@ -1,5 +1,5 @@
 {
-  "name": "@ht/html-tool",
+  "name": "html-mzc-tool",
   "version": "1.0.42",
   "description": "",
   "scripts": {
@@ -36,7 +36,7 @@
     "@types/ramda": "^0.28.14",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
-    "eslint": "^8.19.0",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "html-webpack-plugin": "^5.5.0",
