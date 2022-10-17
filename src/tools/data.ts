@@ -308,3 +308,25 @@ export function getArrayToObjectTargetValue(dataSource: ObjectMap = {}, arrayDat
 	})
 	return data
 }
+
+// const testArray = ['a', 'b', 'c']
+// const testObject = { a: { b: { c: 2, d: 2 } } }
+// console.log(
+// 	'getArrayReduceObject',
+// 	getArrayReduceObject(testObject, testArray)
+// )
+
+// 和getArrayToObjectTargetValue 一样作用， 就是一个是for 一个是reduce
+export function getArrayReduceObject(dataSource: ObjectMap = {}, arrayData: Array<string | number> = []) {
+	const data = deepClone(dataSource)
+	let array = deepClone(arrayData)
+	array = [data, ...array]
+	try {
+		return array.reduce((total: any, num: any) => {
+			return total[num] || {}
+		})
+	} catch (e) {
+		console.error(e, '数组转对象，数据源与数组类型不匹配', 'dataSource', dataSource, 'arrayData', arrayData)
+		return ''
+	}
+}
