@@ -1,6 +1,6 @@
 {
   "name": "html-mzc-tool",
-  "version": "1.0.42",
+  "version": "1.0.50",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -22,6 +22,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "dayjs": "^1.11.4",
+    "moment": "^2.29.4",
     "ramda": "^0.28.0"
   },
   "devDependencies": {

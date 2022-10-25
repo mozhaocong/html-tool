@@ -1,6 +1,7 @@
 import { has, isNil } from 'ramda'
 import { isNumber, isObject, isTrue } from './typeJudgment'
-import dayjs from 'dayjs'
+import dayjs, { isDayjs } from 'dayjs'
+import { isMoment } from 'moment'
 type ObjectMap<Key extends string | number | symbol = any, Value = any> = {
 	[key in Key]: Value
 }
@@ -84,8 +85,8 @@ export function getArrayFilterData(item: any[], call: (callItem: ObjectMap) => b
 
 // 递归深拷贝
 export function deepClone(source: any, call?: (item: any) => any): any {
-	if (typeof source !== 'object') {
-		// 非对象类型(undefined、boolean、number、string、symbol)，直接返回原值即可
+	if (typeof source !== 'object' || isDayjs(source) || isMoment(source)) {
+		// 非对象类型(undefined、boolean、number、string、symbol, isDayjs, isMoment)，直接返回原值即可
 		if (call) {
 			return call(source)
 		}
@@ -280,12 +281,14 @@ export function arrayToObject(dataSource: ObjectMap = {}, arrayData: Array<strin
 		return deepClone(dataSource)
 	}
 	const returnData = setData(deepClone(itemData[key]))
-	if (isTrue(returnData)) {
-		itemData[key] = returnData
-		return data
-	} else {
-		return deepClone(dataSource)
-	}
+	itemData[key] = returnData
+	return data
+	// if (isTrue(returnData)) {
+	// 	itemData[key] = returnData
+	// 	return data
+	// } else {
+	// 	return deepClone(dataSource)
+	// }
 }
 
 //getArrayToObjectTargetValue-start
