@@ -16,7 +16,12 @@ export {
 	arrayObjectJudgeNullObject,
 	objectFilterEmpty,
 	ObjectFilterNull,
-	arrayGetData
+	arrayGetData,
+	objectRecursiveMerge,
+	arrayToObject,
+	getArrayReduceObject,
+	getArrayToObjectTargetValue,
+	objectRepeatObject
 } from './tools/data'
 
 export { default as EventBus } from './tools/eventBus'
