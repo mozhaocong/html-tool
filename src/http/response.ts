@@ -52,3 +52,24 @@ async function EventBusRefreshToken(method: () => Promise<boolean>): Promise<boo
 // 	}
 // 	return false
 // }
+
+export function defFunction(item = null) {
+	return item
+}
+
+export function requestJudgment(item: ObjectMap): boolean {
+	return [200].includes(item.state)
+}
+
+export async function editApiRequest(item: { api: () => Promise<any>; setMethod: (item: boolean) => void; callBack: () => void }) {
+	const { setMethod = defFunction, api, callBack = defFunction } = item
+	setMethod(true)
+	const res = await api()
+	setMethod(false)
+	callBack()
+	if (requestJudgment(res)) {
+		return Promise.resolve(res)
+	} else {
+		return Promise.reject()
+	}
+}

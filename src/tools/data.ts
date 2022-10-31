@@ -186,7 +186,17 @@ export function dataNumberToString(source: any): any {
 	})
 }
 
-export function arrayGetData(sourceData: any[] = [], getData = {}): any[] {
+//arrayGetData-start
+// const sourceData = [
+// 	{ title: '样品需求单号', dataIndex: 'a1' },
+// 	{ title: '赫特SPU款号', dataIndex: 'a2' },
+// 	{ title: '采购数量', dataIndex: 'a3' },
+// 	{ title: '下单时间', dataIndex: 'a4' },
+// ]
+// const getData = { title: '采购数量' }
+// console.log(arrayGetDataList(sourceData, getData))
+//arrayGetData-end
+export function arrayGetData(sourceData: ObjectMap[] = [], getData = {}): ObjectMap[] {
 	return sourceData.filter(item => {
 		let returnData = true
 		for (const key in getData) {
@@ -197,6 +207,36 @@ export function arrayGetData(sourceData: any[] = [], getData = {}): any[] {
 		}
 		return returnData
 	})
+}
+
+//arrayGetDataList-start
+// const sourceData = [
+// 	{ title: '样品需求单号', dataIndex: 'a1' },
+// 	{ title: '赫特SPU款号', dataIndex: 'a2' },
+// 	{ title: '采购数量', dataIndex: 'a3' },
+// 	{ title: '下单时间', dataIndex: 'a4' },
+// ]
+// const getDataList = [{ title: '采购数量' }, { title: '样品需求单号' }]
+// console.log(arrayGetDataList(sourceData, getDataList))
+//arrayGetDataList-end
+export function arrayGetDataList(sourceData: ObjectMap[] = [], getDataList: ObjectMap[] = []): ObjectMap[] {
+	if (!(isTrue(sourceData) && isTrue(getDataList))) return []
+	const returnData = []
+	for (const item of getDataList) {
+		for (const source of sourceData) {
+			let isOk = true
+			for (const key in item) {
+				if (source[key] !== item[key]) {
+					isOk = false
+				}
+			}
+			if (isOk) {
+				returnData.push(source)
+				break
+			}
+		}
+	}
+	return returnData
 }
 
 export function objectRepeatObject(itemA: ObjectMap, itemB: ObjectMap, callback: (key: string, a: any, b: any) => void): void {
