@@ -27,3 +27,4 @@ export {
 export { default as EventBus } from './tools/eventBus'
 export { axiosInit, axiosGet, axiosPost, methodType } from './http'
 export { getSearchString } from './tools/utl'
+export { mockDataSource } from './mock'
