@@ -21,7 +21,8 @@ export {
 	arrayToObject,
 	getArrayReduceObject,
 	getArrayToObjectTargetValue,
-	objectRepeatObject
+	objectRepeatObject,
+	arrayGetDataList
 } from './tools/data'
 
 export { default as EventBus } from './tools/eventBus'
