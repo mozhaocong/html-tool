@@ -12,10 +12,12 @@ export function isNumber(value: any): value is number {
 export function isArray(value: any): value is [] {
 	return is(Array, value)
 }
+// export function isObject(value: any): value is ObjectMap {
+// 	return is(Object, value)
+// }
 export function isObject(value: any): value is ObjectMap {
-	return is(Object, value)
+	return Object.prototype.toString.call(value) === '[object Object]' //true
 }
-
 export function isTrue(value: any): boolean {
 	return !(isEmpty(value) || isNil(value))
 }

@@ -298,7 +298,7 @@ export function objectRecursiveMerge(dataSource: ObjectMap = {}, mergeData: Obje
 // console.log('arrayToObject', testObject, arrayData)
 //arrayToObject-ned
 
-export function arrayToObject(dataSource: ObjectMap = {}, arrayData: Array<string | number> = [], setData?: (returnData: any) => any) {
+export function arrayToObject(dataSource: ObjectMap = {}, arrayData: Array<string | number> = [], setData?: (returnData: any) => any): ObjectMap {
 	const data = deepClone(dataSource)
 	let replaceData = data
 	let itemData: ObjectMap = {}
@@ -343,11 +343,11 @@ export function arrayToObject(dataSource: ObjectMap = {}, arrayData: Array<strin
 
 //getArrayToObjectTargetValue-end
 
-export function getArrayToObjectTargetValue(dataSource: ObjectMap = {}, arrayData: Array<string | number> = []) {
+export function getArrayToObjectTargetValue(dataSource: ObjectMap = {}, arrayData: Array<string | number> = []): any {
 	let data = ''
 	arrayToObject(dataSource, arrayData, value => {
 		data = value
-		return 1
+		return value
 	})
 	return data
 }
@@ -360,7 +360,7 @@ export function getArrayToObjectTargetValue(dataSource: ObjectMap = {}, arrayDat
 // )
 
 // 和getArrayToObjectTargetValue 一样作用， 就是一个是for 一个是reduce
-export function getArrayReduceObject(dataSource: ObjectMap = {}, arrayData: Array<string | number> = []) {
+export function getArrayReduceObject(dataSource: ObjectMap = {}, arrayData: Array<string | number> = []): any {
 	const data = deepClone(dataSource)
 	let array = deepClone(arrayData)
 	array = [data, ...array]
