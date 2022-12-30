@@ -1,5 +1,5 @@
-import { has, isNil } from 'ramda'
-import { isNumber, isObject, isTrue } from './typeJudgment'
+import { difference, has, isNil } from 'ramda'
+import { isNumber, isObject, isTrue, isArray } from './typeJudgment'
 import dayjs, { isDayjs } from 'dayjs'
 import { isMoment } from 'moment'
 type ObjectMap<Key extends string | number | symbol = any, Value = any> = {
@@ -142,7 +142,7 @@ export function objectFilterEmpty(item: ObjectMap = {}): ObjectMap {
 }
 
 // 对象过滤空数据
-export function ObjectFilterNull(data: ObjectMap = {}): ObjectMap {
+export function objectFilterNull(data: ObjectMap = {}): ObjectMap {
 	const params: ObjectMap = {}
 	for (const key in data) {
 		if (isTrue(data[key])) {
@@ -156,7 +156,7 @@ export function ObjectFilterNull(data: ObjectMap = {}): ObjectMap {
 export function arrayObjectJudgeNullObject(data: Array<ObjectMap> = []): boolean {
 	let judge = true
 	for (const item of data) {
-		if (!isTrue(ObjectFilterNull(item))) {
+		if (!isTrue(objectFilterNull(item))) {
 			judge = false
 			break
 		}
@@ -372,4 +372,32 @@ export function getArrayReduceObject(dataSource: ObjectMap = {}, arrayData: Arra
 		console.error(e, '数组转对象，数据源与数组类型不匹配', 'dataSource', dataSource, 'arrayData', arrayData)
 		return ''
 	}
+}
+
+// const data = { test: { data: [{ a: 1 }] } }
+// const data1 = { test: { data: [{ a: 2, b: 1 }, { a: 3 }] }, sd: 1 }
+// const data2 = { test: { data: [{ a: 1 }] }, sd: 1 }
+// const logData = diffFormData(data,data1)
+// console.log(logData)
+export function diffFormData(sourceData, targetData) {
+	if (isTrue(sourceData) && isObject(sourceData) && isTrue(targetData) && isObject(targetData)) {
+		const targetKey = Object.keys(targetData)
+		const sourceKey = Object.keys(sourceData)
+		const diffKey = difference(targetKey, sourceKey) || []
+		for (const key in sourceData) {
+			if (isObject(sourceData[key]) && isObject(targetData[key])) {
+				diffFormData(sourceData[key], targetData[key])
+			} else if (isArray(sourceData[key]) && isArray(targetData[key])) {
+				sourceData[key].forEach((item, index) => {
+					diffFormData(item, targetData[key][index])
+				})
+			}
+		}
+		diffKey.forEach(res => {
+			try {
+				sourceData[res] = targetData[res]
+			} catch {}
+		})
+	}
+	return sourceData
 }

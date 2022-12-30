@@ -24,8 +24,8 @@ module.exports = [
 				babelHelpers: 'runtime',
 				exclude: 'node_modules/**',
 				plugins: ['@babel/plugin-transform-runtime']
-			}),
-			terser()
+			})
+			// terser()
 		],
 		output: [
 			{

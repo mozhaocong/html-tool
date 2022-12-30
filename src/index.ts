@@ -1,5 +1,6 @@
 export { isTrue, isString, isArray, isObject, isNumber, isFunction, isBlob, isFunctionOfOther, isBoolean } from './tools/typeJudgment'
 export { serialNumber, debounce, throttle } from './tools/common'
+export { autoCompute, numCompute } from './tools/calculation'
 export {
 	setArrayData,
 	forArrayData,
@@ -15,17 +16,18 @@ export {
 	dayJsDataToString,
 	arrayObjectJudgeNullObject,
 	objectFilterEmpty,
-	ObjectFilterNull,
+	objectFilterNull,
 	arrayGetData,
 	objectRecursiveMerge,
 	arrayToObject,
 	getArrayReduceObject,
 	getArrayToObjectTargetValue,
 	objectRepeatObject,
-	arrayGetDataList
+	arrayGetDataList,
+	diffFormData
 } from './tools/data'
 
 export { default as EventBus } from './tools/eventBus'
 export { axiosInit, axiosGet, axiosPost, methodType } from './http'
-export { getSearchString } from './tools/utl'
+export { getSearchString } from './tools/url'
 export { mockDataSource } from './mock'

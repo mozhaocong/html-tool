@@ -1,13 +1,13 @@
 {
   "name": "html-mzc-tool",
-  "version": "1.0.66",
+  "version": "1.2.2",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "start": "webpack serve --open",
     "build:rollup": "rollup -c",
-    "push": "npm publish"
+    "push": "rollup -c && npm publish"
   },
   "main": "lib/index.js",
   "author": "",
