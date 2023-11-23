@@ -190,11 +190,12 @@ export function dataNumberToString(source: any): any {
 // const sourceData = [
 // 	{ title: '样品需求单号', dataIndex: 'a1' },
 // 	{ title: '赫特SPU款号', dataIndex: 'a2' },
-// 	{ title: '采购数量', dataIndex: 'a3' },
+// 	{ title: '采购数量', dataIndex: 'a3' test:1 },
+// 	{ title: '采购数量', dataIndex: 'a3'  test:2},
 // 	{ title: '下单时间', dataIndex: 'a4' },
 // ]
-// const getData = { title: '采购数量' }
-// console.log(arrayGetDataList(sourceData, getData))
+// const getData = { title: '采购数量', test:2 }
+// console.log(arrayGetDataList(sourceData, getData)) [{ title: '采购数量', dataIndex: 'a3' }]
 //arrayGetData-end
 export function arrayGetData(sourceData: ObjectMap[] = [], getData = {}): ObjectMap[] {
 	return sourceData.filter(item => {

@@ -14,7 +14,7 @@ export function numCompute(A, B, F, digit) {
 			for (let i = 0; i < digit; i++) {
 				data += '0'
 			}
-			return parseInt(array[0] + data)
+			return parseInt(array[0] + data) || 0
 		}
 	}
 	if (!isTrue(A) || !isTrue(B)) {
@@ -38,7 +38,9 @@ export function numCompute(A, B, F, digit) {
 			parseData = dataA / dataB
 			break
 	}
-	return parseData
+	// return parseData
+	const parseDataString = parseData?.toFixed(digit)
+	return Number(parseDataString || 0)
 }
 
 export function autoCompute(A = 0, B = 0, F) {
