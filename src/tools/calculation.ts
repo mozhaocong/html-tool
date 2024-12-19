@@ -32,7 +32,7 @@ export function numCompute(A, B, F, digit) {
 			parseData = (dataA - dataB) / m
 			break
 		case '*':
-			parseData = (dataA * dataB) / m / m
+			parseData = (dataA * dataB) / (m * m)
 			break
 		case '/':
 			parseData = dataA / dataB
@@ -58,4 +58,8 @@ export function autoCompute(A = 0, B = 0, F) {
 		}
 	})
 	return numCompute(A, B, F, digit)
+}
+
+export function formatNumber(num, digit = 2) {
+	return Number(num.toFixed(digit))
 }

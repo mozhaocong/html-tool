@@ -1,7 +1,7 @@
 import { difference, has, isNil } from 'ramda'
 import { isNumber, isObject, isTrue, isArray } from './typeJudgment'
 import dayjs, { isDayjs } from 'dayjs'
-import { isMoment } from 'moment'
+import moment from 'moment'
 type ObjectMap<Key extends string | number | symbol = any, Value = any> = {
 	[key in Key]: Value
 }
@@ -11,6 +11,7 @@ export function objectToArray(object: ObjectMap): ObjectMap {
 	})
 }
 
+const { isMoment } = moment
 export function arrayKeyToMap(list: Array<ObjectMap>, key: string): Map<string, any> {
 	const data: Map<string, any> = new Map()
 	list.forEach(item => {

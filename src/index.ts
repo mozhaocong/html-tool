@@ -1,6 +1,6 @@
 export { isTrue, isString, isArray, isObject, isNumber, isFunction, isBlob, isFunctionOfOther, isBoolean } from './tools/typeJudgment'
 export { serialNumber, debounce, throttle } from './tools/common'
-export { autoCompute, numCompute } from './tools/calculation'
+export { autoCompute, numCompute, formatNumber } from './tools/calculation'
 export {
 	setArrayData,
 	forArrayData,
